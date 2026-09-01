@@ -27,6 +27,7 @@ import { Route as ThemesRouteImport } from './routes/themes'
 import { Route as WorkstationsRouteImport } from './routes/workstations'
 import { Route as ManualIndexRouteImport } from './routes/manual/index'
 import { Route as ManualSlugRouteImport } from './routes/manual/$slug'
+import { Route as ManualTocRouteImport } from './routes/manual/toc'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +119,11 @@ const ManualSlugRoute = ManualSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ManualRouteRoute,
 } as any)
+const ManualTocRoute = ManualTocRouteImport.update({
+  id: '/toc',
+  path: '/toc',
+  getParentRoute: () => ManualRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
   '/manual/$slug': typeof ManualSlugRoute
+  '/manual/toc': typeof ManualTocRoute
   '/manual/': typeof ManualIndexRoute
 }
 export interface FileRoutesByTo {
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
   '/manual/$slug': typeof ManualSlugRoute
+  '/manual/toc': typeof ManualTocRoute
   '/manual': typeof ManualIndexRoute
 }
 export interface FileRoutesById {
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
   '/manual/$slug': typeof ManualSlugRoute
+  '/manual/toc': typeof ManualTocRoute
   '/manual/': typeof ManualIndexRoute
 }
 export interface FileRouteTypes {
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/themes'
     | '/workstations'
     | '/manual/$slug'
+    | '/manual/toc'
     | '/manual/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/themes'
     | '/workstations'
     | '/manual/$slug'
+    | '/manual/toc'
     | '/manual'
   id:
     | '__root__'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/themes'
     | '/workstations'
     | '/manual/$slug'
+    | '/manual/toc'
     | '/manual/'
   fileRoutesById: FileRoutesById
 }
@@ -388,16 +400,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManualSlugRouteImport
       parentRoute: typeof ManualRouteRoute
     }
+    '/manual/toc': {
+      id: '/manual/toc'
+      path: '/toc'
+      fullPath: '/manual/toc'
+      preLoaderRoute: typeof ManualTocRouteImport
+      parentRoute: typeof ManualRouteRoute
+    }
   }
 }
 
 interface ManualRouteRouteChildren {
   ManualSlugRoute: typeof ManualSlugRoute
+  ManualTocRoute: typeof ManualTocRoute
   ManualIndexRoute: typeof ManualIndexRoute
 }
 
 const ManualRouteRouteChildren: ManualRouteRouteChildren = {
   ManualSlugRoute: ManualSlugRoute,
+  ManualTocRoute: ManualTocRoute,
   ManualIndexRoute: ManualIndexRoute,
 }
 
