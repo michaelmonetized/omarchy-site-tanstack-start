@@ -12,6 +12,7 @@
 
 @theme inline {
   --font-sans: "JetBrains Mono Variable", monospace;
+  --font-mono: "JetBrains Mono Variable", monospace;
   --font-heading: "Noto Sans Variable", sans-serif;
 
   --phi: calc((1 + sqrt(5)) / 2);
@@ -91,6 +92,8 @@
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
   --animate-scale-in: scale-in 0.3s ease-out;
+  --animate-hero-copy: hero-copy 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-filmstrip: filmstrip-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-hover: var(--accent-hover);
@@ -142,6 +145,17 @@
   --color-input-placeholder: var(--input-placeholder);
   --color-input-foreground: var(--input-foreground);
 
+  --color-omarchy-green: #9ece6a;
+  --color-green: var(--tokyo-green);
+  --color-yellow: var(--tokyo-yellow);
+  --color-turquoise: var(--tokyo-accent-hover);
+  --color-terminal-blue: var(--tokyo-blue);
+  --color-terminal-cyan: var(--tokyo-cyan);
+  --color-terminal-white: var(--tokyo-card-foreground);
+  --color-terminal-black: var(--tokyo-muted-text);
+  --color-background-night: var(--night-background);
+  --color-background-storm: var(--night-secondary);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -177,6 +191,90 @@
   --size-5xl: 64rem;
   --size-6xl: 72rem;
   --size-7xl: 80rem;
+
+  --width-3xs: var(--container-3xs);
+  --width-2xs: var(--container-2xs);
+  --width-xs: var(--container-xs);
+  --width-sm: var(--container-sm);
+  --width-md: var(--container-md);
+  --width-lg: var(--container-lg);
+  --width-xl: var(--container-xl);
+  --width-2xl: var(--container-2xl);
+  --width-3xl: var(--container-3xl);
+  --width-4xl: var(--container-4xl);
+  --width-5xl: var(--container-5xl);
+  --width-6xl: var(--container-6xl);
+  --width-7xl: var(--container-7xl);
+
+  --min-width-3xs: var(--container-3xs);
+  --min-width-2xs: var(--container-2xs);
+  --min-width-xs: var(--container-xs);
+  --min-width-sm: var(--container-sm);
+  --min-width-md: var(--container-md);
+  --min-width-lg: var(--container-lg);
+  --min-width-xl: var(--container-xl);
+  --min-width-2xl: var(--container-2xl);
+  --min-width-3xl: var(--container-3xl);
+  --min-width-4xl: var(--container-4xl);
+  --min-width-5xl: var(--container-5xl);
+  --min-width-6xl: var(--container-6xl);
+  --min-width-7xl: var(--container-7xl);
+
+  --max-width-3xs: var(--container-3xs);
+  --max-width-2xs: var(--container-2xs);
+  --max-width-xs: var(--container-xs);
+  --max-width-sm: var(--container-sm);
+  --max-width-md: var(--container-md);
+  --max-width-lg: var(--container-lg);
+  --max-width-xl: var(--container-xl);
+  --max-width-2xl: var(--container-2xl);
+  --max-width-3xl: var(--container-3xl);
+  --max-width-4xl: var(--container-4xl);
+  --max-width-5xl: var(--container-5xl);
+  --max-width-6xl: var(--container-6xl);
+  --max-width-7xl: var(--container-7xl);
+
+  --height-3xs: var(--container-3xs);
+  --height-2xs: var(--container-2xs);
+  --height-xs: var(--container-xs);
+  --height-sm: var(--container-sm);
+  --height-md: var(--container-md);
+  --height-lg: var(--container-lg);
+  --height-xl: var(--container-xl);
+  --height-2xl: var(--container-2xl);
+  --height-3xl: var(--container-3xl);
+  --height-4xl: var(--container-4xl);
+  --height-5xl: var(--container-5xl);
+  --height-6xl: var(--container-6xl);
+  --height-7xl: var(--container-7xl);
+
+  --min-height-3xs: var(--container-3xs);
+  --min-height-2xs: var(--container-2xs);
+  --min-height-xs: var(--container-xs);
+  --min-height-sm: var(--container-sm);
+  --min-height-md: var(--container-md);
+  --min-height-lg: var(--container-lg);
+  --min-height-xl: var(--container-xl);
+  --min-height-2xl: var(--container-2xl);
+  --min-height-3xl: var(--container-3xl);
+  --min-height-4xl: var(--container-4xl);
+  --min-height-5xl: var(--container-5xl);
+  --min-height-6xl: var(--container-6xl);
+  --min-height-7xl: var(--container-7xl);
+
+  --max-height-3xs: var(--container-3xs);
+  --max-height-2xs: var(--container-2xs);
+  --max-height-xs: var(--container-xs);
+  --max-height-sm: var(--container-sm);
+  --max-height-md: var(--container-md);
+  --max-height-lg: var(--container-lg);
+  --max-height-xl: var(--container-xl);
+  --max-height-2xl: var(--container-2xl);
+  --max-height-3xl: var(--container-3xl);
+  --max-height-4xl: var(--container-4xl);
+  --max-height-5xl: var(--container-5xl);
+  --max-height-6xl: var(--container-6xl);
+  --max-height-7xl: var(--container-7xl);
 }
 
 :root {
@@ -186,7 +284,7 @@
   font-size: var(--text-core);
   line-height: var(--line-height);
 
-  --radius: 0.625rem;
+  --radius: 0;
 
   /* Global shadcn Mappings backed by Light-Dark evaluation */
   --accent-foreground: var(--tokyo-text);
@@ -733,5 +831,47 @@ body:has(:hover, :focus-visible, :active) {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes hero-copy {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes filmstrip-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mask-mock {
+  mask-image:
+    linear-gradient(to bottom, #000 42%, transparent 96%),
+    radial-gradient(ellipse 78% 72% at 50% 38%, #000 36%, transparent 78%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 42%, transparent 96%),
+    radial-gradient(ellipse 78% 72% at 50% 38%, #000 36%, transparent 78%);
+  -webkit-mask-composite: source-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-copy,
+  .animate-filmstrip,
+  .animate-fade-in,
+  .animate-fade-in-up {
+    animation: none;
   }
 }

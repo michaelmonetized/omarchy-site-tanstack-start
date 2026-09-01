@@ -8,6 +8,9 @@ import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 
 const config = defineConfig({
+  server: {
+    allowedHosts: [".ts.net"],
+  },
   staged: {
     "*": "vp check --fix",
   },

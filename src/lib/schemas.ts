@@ -16,6 +16,14 @@ export const analyticsRecordSchema = z.object({
 
 export type AnalyticsRecord = z.infer<typeof analyticsRecordSchema>;
 
+export const investmentRecordSchema = z.object({
+  id: z.string().min(1),
+  date: z.number().nonnegative().min(1, "Date is required"),
+  amount: z.number().nonnegative("Amount must be postitive"),
+});
+
+export type InvestmentRecord = z.infer<typeof investmentRecordSchema>;
+
 /**
  * Project / Task item schema for forms and state
  */

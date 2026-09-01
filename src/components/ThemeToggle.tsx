@@ -18,10 +18,10 @@ export default function ThemeToggle() {
       <button
         type="button"
         aria-label="Toggle theme"
-        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] text-[var(--sea-ink)] shadow-[0_8px_22px_rgba(30,90,72,0.08)] transition hover:-translate-y-0.5"
+        className="inline-flex size-8 items-center justify-center border border-border bg-muted text-foreground"
       >
         <span className="sr-only">Toggle theme</span>
-        <Lightbulb className="h-4 w-4 opacity-50" />
+        <Lightbulb className="size-3.5 opacity-50" />
       </button>
     );
   }
@@ -41,20 +41,18 @@ export default function ThemeToggle() {
             type="button"
             onClick={togglePreference}
             aria-label={label}
-            className="group relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] text-[var(--sea-ink)] shadow-[0_8px_22px_rgba(30,90,72,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="group relative inline-flex size-8 items-center justify-center border border-border bg-muted text-foreground transition-colors hover:bg-secondary-hover focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           />
         }
       >
         {isDark ? (
-          // System / resolved is dark -> empty/unlit lightbulb icon. Click gives light mode.
           <LightbulbOff
-            className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:scale-110"
+            className="size-3.5 text-muted-foreground transition-transform group-hover:scale-110"
             aria-hidden="true"
           />
         ) : (
-          // System / resolved is light -> lit lightbulb icon. Click gives dark mode.
           <Lightbulb
-            className="h-4 w-4 text-amber-500 fill-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)] transition-transform duration-200 group-hover:scale-110"
+            className="size-3.5 fill-yellow text-yellow transition-transform group-hover:scale-110"
             aria-hidden="true"
           />
         )}
@@ -62,7 +60,7 @@ export default function ThemeToggle() {
       </TooltipTrigger>
       <TooltipContent side="bottom" align="end" className="text-xs">
         <p className="font-semibold">{isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}</p>
-        <p className="text-muted-foreground text-[10px]">
+        <p className="text-[10px] text-muted-foreground">
           Current: {isDark ? "Dark" : "Light"} ({isSystem ? "System" : "Opposite"})
         </p>
       </TooltipContent>

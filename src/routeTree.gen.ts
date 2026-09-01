@@ -8,79 +8,430 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as AboutRouteImport } from "./routes/about";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AirRouteImport } from './routes/air'
+import { Route as DiscordRouteImport } from './routes/discord'
+import { Route as ManualRouteRouteImport } from './routes/manual/route'
+import { Route as MeetupsRouteImport } from './routes/meetups'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PatronsRouteImport } from './routes/patrons'
+import { Route as PotatoRouteImport } from './routes/potato'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as ServerRouteImport } from './routes/server'
+import { Route as SponsorshipsRouteImport } from './routes/sponsorships'
+import { Route as TeamsRouteImport } from './routes/teams'
+import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as WorkstationsRouteImport } from './routes/workstations'
+import { Route as ManualIndexRouteImport } from './routes/manual/index'
+import { Route as ManualSlugRouteImport } from './routes/manual/$slug'
 
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AboutRoute = AboutRouteImport.update({
-  id: "/about",
-  path: "/about",
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
+const AirRoute = AirRouteImport.update({
+  id: '/air',
+  path: '/air',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscordRoute = DiscordRouteImport.update({
+  id: '/discord',
+  path: '/discord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManualRouteRoute = ManualRouteRouteImport.update({
+  id: '/manual',
+  path: '/manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeetupsRoute = MeetupsRouteImport.update({
+  id: '/meetups',
+  path: '/meetups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatronsRoute = PatronsRouteImport.update({
+  id: '/patrons',
+  path: '/patrons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PotatoRoute = PotatoRouteImport.update({
+  id: '/potato',
+  path: '/potato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServerRoute = ServerRouteImport.update({
+  id: '/server',
+  path: '/server',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SponsorshipsRoute = SponsorshipsRouteImport.update({
+  id: '/sponsorships',
+  path: '/sponsorships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamsRoute = TeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThemesRoute = ThemesRouteImport.update({
+  id: '/themes',
+  path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkstationsRoute = WorkstationsRouteImport.update({
+  id: '/workstations',
+  path: '/workstations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManualIndexRoute = ManualIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManualRouteRoute,
+} as any)
+const ManualSlugRoute = ManualSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ManualRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
+  '/': typeof IndexRoute
+  '/manual': typeof ManualRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/air': typeof AirRoute
+  '/discord': typeof DiscordRoute
+  '/meetups': typeof MeetupsRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
+  '/patrons': typeof PatronsRoute
+  '/potato': typeof PotatoRoute
+  '/security': typeof SecurityRoute
+  '/server': typeof ServerRoute
+  '/sponsorships': typeof SponsorshipsRoute
+  '/teams': typeof TeamsRoute
+  '/themes': typeof ThemesRoute
+  '/workstations': typeof WorkstationsRoute
+  '/manual/$slug': typeof ManualSlugRoute
+  '/manual/': typeof ManualIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/air': typeof AirRoute
+  '/discord': typeof DiscordRoute
+  '/meetups': typeof MeetupsRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
+  '/patrons': typeof PatronsRoute
+  '/potato': typeof PotatoRoute
+  '/security': typeof SecurityRoute
+  '/server': typeof ServerRoute
+  '/sponsorships': typeof SponsorshipsRoute
+  '/teams': typeof TeamsRoute
+  '/themes': typeof ThemesRoute
+  '/workstations': typeof WorkstationsRoute
+  '/manual/$slug': typeof ManualSlugRoute
+  '/manual': typeof ManualIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/manual': typeof ManualRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/air': typeof AirRoute
+  '/discord': typeof DiscordRoute
+  '/meetups': typeof MeetupsRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
+  '/patrons': typeof PatronsRoute
+  '/potato': typeof PotatoRoute
+  '/security': typeof SecurityRoute
+  '/server': typeof ServerRoute
+  '/sponsorships': typeof SponsorshipsRoute
+  '/teams': typeof TeamsRoute
+  '/themes': typeof ThemesRoute
+  '/workstations': typeof WorkstationsRoute
+  '/manual/$slug': typeof ManualSlugRoute
+  '/manual/': typeof ManualIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/about";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/about";
-  id: "__root__" | "/" | "/about";
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/manual'
+    | '/about'
+    | '/air'
+    | '/discord'
+    | '/meetups'
+    | '/news'
+    | '/partners'
+    | '/patrons'
+    | '/potato'
+    | '/security'
+    | '/server'
+    | '/sponsorships'
+    | '/teams'
+    | '/themes'
+    | '/workstations'
+    | '/manual/$slug'
+    | '/manual/'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/about'
+    | '/air'
+    | '/discord'
+    | '/meetups'
+    | '/news'
+    | '/partners'
+    | '/patrons'
+    | '/potato'
+    | '/security'
+    | '/server'
+    | '/sponsorships'
+    | '/teams'
+    | '/themes'
+    | '/workstations'
+    | '/manual/$slug'
+    | '/manual'
+  id:
+    | '__root__'
+    | '/'
+    | '/manual'
+    | '/about'
+    | '/air'
+    | '/discord'
+    | '/meetups'
+    | '/news'
+    | '/partners'
+    | '/patrons'
+    | '/potato'
+    | '/security'
+    | '/server'
+    | '/sponsorships'
+    | '/teams'
+    | '/themes'
+    | '/workstations'
+    | '/manual/$slug'
+    | '/manual/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AboutRoute: typeof AboutRoute;
+  IndexRoute: typeof IndexRoute
+  ManualRouteRoute: typeof ManualRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AirRoute: typeof AirRoute
+  DiscordRoute: typeof DiscordRoute
+  MeetupsRoute: typeof MeetupsRoute
+  NewsRoute: typeof NewsRoute
+  PartnersRoute: typeof PartnersRoute
+  PatronsRoute: typeof PatronsRoute
+  PotatoRoute: typeof PotatoRoute
+  SecurityRoute: typeof SecurityRoute
+  ServerRoute: typeof ServerRoute
+  SponsorshipsRoute: typeof SponsorshipsRoute
+  TeamsRoute: typeof TeamsRoute
+  ThemesRoute: typeof ThemesRoute
+  WorkstationsRoute: typeof WorkstationsRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/about": {
-      id: "/about";
-      path: "/about";
-      fullPath: "/about";
-      preLoaderRoute: typeof AboutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/air': {
+      id: '/air'
+      path: '/air'
+      fullPath: '/air'
+      preLoaderRoute: typeof AirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discord': {
+      id: '/discord'
+      path: '/discord'
+      fullPath: '/discord'
+      preLoaderRoute: typeof DiscordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manual': {
+      id: '/manual'
+      path: '/manual'
+      fullPath: '/manual'
+      preLoaderRoute: typeof ManualRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meetups': {
+      id: '/meetups'
+      path: '/meetups'
+      fullPath: '/meetups'
+      preLoaderRoute: typeof MeetupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patrons': {
+      id: '/patrons'
+      path: '/patrons'
+      fullPath: '/patrons'
+      preLoaderRoute: typeof PatronsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/potato': {
+      id: '/potato'
+      path: '/potato'
+      fullPath: '/potato'
+      preLoaderRoute: typeof PotatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/server': {
+      id: '/server'
+      path: '/server'
+      fullPath: '/server'
+      preLoaderRoute: typeof ServerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sponsorships': {
+      id: '/sponsorships'
+      path: '/sponsorships'
+      fullPath: '/sponsorships'
+      preLoaderRoute: typeof SponsorshipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teams': {
+      id: '/teams'
+      path: '/teams'
+      fullPath: '/teams'
+      preLoaderRoute: typeof TeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/themes': {
+      id: '/themes'
+      path: '/themes'
+      fullPath: '/themes'
+      preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workstations': {
+      id: '/workstations'
+      path: '/workstations'
+      fullPath: '/workstations'
+      preLoaderRoute: typeof WorkstationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manual/': {
+      id: '/manual/'
+      path: '/'
+      fullPath: '/manual/'
+      preLoaderRoute: typeof ManualIndexRouteImport
+      parentRoute: typeof ManualRouteRoute
+    }
+    '/manual/$slug': {
+      id: '/manual/$slug'
+      path: '/$slug'
+      fullPath: '/manual/$slug'
+      preLoaderRoute: typeof ManualSlugRouteImport
+      parentRoute: typeof ManualRouteRoute
+    }
   }
 }
 
+interface ManualRouteRouteChildren {
+  ManualSlugRoute: typeof ManualSlugRoute
+  ManualIndexRoute: typeof ManualIndexRoute
+}
+
+const ManualRouteRouteChildren: ManualRouteRouteChildren = {
+  ManualSlugRoute: ManualSlugRoute,
+  ManualIndexRoute: ManualIndexRoute,
+}
+
+const ManualRouteRouteWithChildren = ManualRouteRoute._addFileChildren(
+  ManualRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ManualRouteRoute: ManualRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-};
+  AirRoute: AirRoute,
+  DiscordRoute: DiscordRoute,
+  MeetupsRoute: MeetupsRoute,
+  NewsRoute: NewsRoute,
+  PartnersRoute: PartnersRoute,
+  PatronsRoute: PatronsRoute,
+  PotatoRoute: PotatoRoute,
+  SecurityRoute: SecurityRoute,
+  ServerRoute: ServerRoute,
+  SponsorshipsRoute: SponsorshipsRoute,
+  TeamsRoute: TeamsRoute,
+  ThemesRoute: ThemesRoute,
+  WorkstationsRoute: WorkstationsRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx";
-import type { createStart } from "@tanstack/react-start";
-declare module "@tanstack/react-start" {
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

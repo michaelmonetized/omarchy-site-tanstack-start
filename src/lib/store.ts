@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { AnalyticsRecord, ProjectItem, FilterQuery } from "./schemas";
+import type { AnalyticsRecord, ProjectItem, FilterQuery, InvestmentRecord } from "./schemas";
 
 export interface AppState {
   // Analytics dataset for Charts & Tables
+  investmentData: InvestmentRecord[];
   analyticsData: AnalyticsRecord[];
   selectedMetricId: string | null;
   selectedCategory: string;
@@ -23,6 +24,29 @@ export interface AppState {
   setFilters: (filters: Partial<FilterQuery>) => void;
   resetData: () => void;
 }
+
+export const INITIAL_INVESTMENT_DATA: InvestmentRecord[] = [
+  {
+    id: "i1",
+    date: 1787328069,
+    amount: 8000000.0,
+  },
+  {
+    id: "i2",
+    date: 1787568758,
+    amount: 10000000.0,
+  },
+  {
+    id: "i3",
+    date: 1788181746,
+    amount: 12000000.0,
+  },
+  {
+    id: "i4",
+    date: 1788184247,
+    amount: 12600000.0,
+  },
+];
 
 export const INITIAL_ANALYTICS_DATA: AnalyticsRecord[] = [
   {
@@ -124,6 +148,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
       analyticsData: INITIAL_ANALYTICS_DATA,
+      investmentData: INITIAL_INVESTMENT_DATA,
       selectedMetricId: null,
       selectedCategory: "all",
       projects: INITIAL_PROJECTS,
@@ -162,7 +187,7 @@ export const useAppStore = create<AppState>()(
         }),
     }),
     {
-      name: "omararchy_app_store",
+      name: "omarchy_app_store",
       partialize: (state) => ({
         projects: state.projects,
         analyticsData: state.analyticsData,
