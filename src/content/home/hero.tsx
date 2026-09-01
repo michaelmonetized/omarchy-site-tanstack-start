@@ -125,7 +125,7 @@ export default function HomeHero() {
   const frameClass = "absolute inset-0 size-full object-cover object-center";
 
   return (
-    <header className="relative flex h-svh w-full flex-col bg-background pt-14 [clip-path:inset(0)] md:block md:pt-0">
+    <header className="bg-background relative flex h-svh w-full flex-col pt-14 [clip-path:inset(0)] md:block md:pt-0">
       <img
         src={HERO_END}
         alt=""
@@ -136,7 +136,7 @@ export default function HomeHero() {
       />
 
       <div className="relative flex min-h-0 flex-1 items-center justify-center md:absolute md:inset-0">
-        <div className="relative aspect-[1920/1056] h-auto w-full max-h-full max-w-full md:w-[min(100%,calc(100svh*1920/1056))]">
+        <div className="relative aspect-[1920/1056] h-auto max-h-full w-full max-w-full md:w-[min(100%,calc(100svh*1920/1056))]">
           <img
             src={HERO_END}
             alt=""
@@ -173,7 +173,7 @@ export default function HomeHero() {
           </video>
 
           {etch ? (
-            <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center mix-blend-screen">
+            <div className="pointer-events-none absolute inset-0 z-10 flex -translate-y-4 items-center justify-center mix-blend-screen">
               <div className={`${WORD_WIDTH} [container-type:inline-size]`}>
                 <WteLogo active onFinished={onLogoFinished} />
               </div>
@@ -185,7 +185,7 @@ export default function HomeHero() {
       <div className="relative z-10 shrink-0 px-4 py-3 text-center md:absolute md:inset-x-0 md:bottom-[22vh] md:px-8 md:py-0">
         <h1
           className={cn(
-            "font-heading mx-auto max-w-3xl text-sm font-extrabold tracking-tight text-terminal-cyan drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] md:text-md",
+            "font-heading text-terminal-cyan md:text-md mx-auto max-w-3xl text-sm font-extrabold tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]",
             showTitle ? "animate-hero-copy" : "opacity-0",
           )}
         >
@@ -203,14 +203,14 @@ export default function HomeHero() {
         >
           <Link
             to="/manual"
-            className="inline-flex items-center gap-1.5 border border-border bg-background/80 px-3 py-1.5 text-xs font-bold text-foreground no-underline backdrop-blur-sm hover:bg-muted"
+            className="border-border bg-background/80 text-foreground hover:bg-muted inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline backdrop-blur-sm"
           >
             <BookOpenIcon className="size-3.5" aria-hidden="true" />
             Manual
           </Link>
           <Link
             to="/install"
-            className="inline-flex items-center gap-1.5 border border-green bg-green px-3 py-1.5 text-xs font-bold text-background no-underline hover:bg-success"
+            className="border-green bg-green text-background hover:bg-success inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline"
           >
             <DownloadIcon className="size-3.5" aria-hidden="true" />
             ISO
@@ -219,7 +219,7 @@ export default function HomeHero() {
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 border border-border bg-background/80 px-3 py-1.5 text-xs font-bold text-foreground no-underline backdrop-blur-sm hover:bg-muted"
+            className="border-border bg-background/80 text-foreground hover:bg-muted inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline backdrop-blur-sm"
           >
             <GithubIcon className="size-3.5" aria-hidden="true" />
             GitHub
@@ -228,7 +228,7 @@ export default function HomeHero() {
 
         <p
           className={cn(
-            "mx-auto mt-2 max-w-2xl text-xs text-pretty italic text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] md:mt-3",
+            "text-foreground mx-auto mt-2 max-w-2xl text-xs text-pretty italic drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] md:mt-3",
             showCopy ? "animate-hero-copy" : "opacity-0",
           )}
         >

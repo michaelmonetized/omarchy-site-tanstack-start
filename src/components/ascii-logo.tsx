@@ -1,5 +1,4 @@
 import { cn } from "#/lib/utils";
-
 export const OMARCHY_ASCII = `                 ▄▄▄
  ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
 ███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
@@ -11,14 +10,14 @@ export const OMARCHY_ASCII = `                 ▄▄▄
  ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
                                        ███   █▀`;
 
-export function AsciiLogo({ className = "" }: { className?: string }) {
+export function AsciiLogo({ className = "", ref = {} }: { className?: string; ref?: any }) {
   const preClass = cn(
     "m-0 p-0 font-mono text-omarchy-green block transition-opacity hover:opacity-90 text-[16px] text-left tracking-tighter leading-none select-none",
     className,
   );
 
   return (
-    <pre className={preClass}>{`
+    <pre className={preClass} ref={ref}>{`
                  ▄▄▄
  ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
 ███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
@@ -32,4 +31,3 @@ export function AsciiLogo({ className = "" }: { className?: string }) {
 `}</pre>
   );
 }
-export default AsciiLogo;

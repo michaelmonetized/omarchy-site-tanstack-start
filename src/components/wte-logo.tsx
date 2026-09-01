@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { OMARCHY_ASCII } from "@/components/ascii-logo";
+import { AsciiLogo, OMARCHY_ASCII } from "@/components/ascii-logo";
 import { cn } from "@/lib/utils";
 
 const WTE_WASM_URL = "/assets/js/wte/laseretch.wasm";
@@ -188,20 +188,18 @@ export function WteLogo({
       href="/"
       aria-label="Omarchy"
       className={cn(
-        "pointer-events-auto relative mx-auto block w-full text-green no-underline",
+        "text-omarchy-green pointer-events-auto relative mx-auto block w-full no-underline",
         className,
       )}
     >
-      <pre
-        ref={preRef}
+      <AsciiLogo
         className={cn(
-          "m-0 block w-full p-0 text-center font-mono text-[length:calc(100cqw/45)] leading-[1.05] tracking-[-0.05em] whitespace-pre text-green select-none",
+          `text-omarchy-green w-full text-[calc(100cqw/44.25)]`,
           "transition-opacity duration-700",
           !active || !etched ? "opacity-0" : "opacity-100",
         )}
-      >
-        {OMARCHY_ASCII}
-      </pre>
+        ref={preRef}
+      />
       <span
         ref={holderRef}
         className={cn(
