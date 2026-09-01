@@ -1,14 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { AsciiLogo, OMARCHY_ASCII } from "@/components/ascii-logo";
 import { cn } from "@/lib/utils";
 
 const WTE_WASM_URL = "/assets/js/wte/laseretch.wasm";
 const EFFECT = "laseretch";
-const ART_COLUMNS = 81;
-const ART_ROWS = 10;
-const CELL_ASPECT = 2;
 const FONT_WAIT_MS = 1000;
-const CANVAS_FADE_MS = 700;
 
 type Playback = {
   restart: () => Promise<void>;
@@ -68,13 +64,39 @@ function afterFonts() {
   ]);
 }
 
-function nativeGrid(host: HTMLElement) {
-  const box = host.getBoundingClientRect();
-  const cell = Math.max(
-    1,
-    Math.floor(Math.min(box.width / ART_COLUMNS, box.height / (ART_ROWS * CELL_ASPECT))),
-  );
-  return { width: cell * ART_COLUMNS, height: cell * ART_ROWS * CELL_ASPECT };
+function artSize(text: string) {
+  const lines = text.replace(/^\n+/, "").replace(/\n+$/, "").split("\n");
+  return {
+    columns: Math.max(1, ...lines.map((line) => line.length)),
+    rows: Math.max(1, lines.length),
+  };
+}
+
+function asciiInk(pre: HTMLElement) {
+  const range = document.createRange();
+  range.selectNodeContents(pre);
+  const ink = range.getBoundingClientRect();
+  const box = pre.getBoundingClientRect();
+  return {
+    width: Math.max(1, ink.width),
+    height: Math.max(1, ink.height),
+    left: ink.left - box.left,
+    top: ink.top - box.top,
+  };
+}
+
+function gridFor(width: number, height: number, columns: number, rows: number) {
+  const cell = Math.max(1, Math.floor(Math.min(width / columns, height / (rows * 2))));
+  return { width: columns * cell, height: rows * cell * 2 };
+}
+
+function fitCanvas(canvas: HTMLCanvasElement, pre: HTMLElement) {
+  const ink = asciiInk(pre);
+  canvas.style.width = `${ink.width}px`;
+  canvas.style.height = `${ink.height}px`;
+  canvas.style.left = `${ink.left}px`;
+  canvas.style.top = `${ink.top}px`;
+  return ink;
 }
 
 export function WteLogo({
@@ -88,17 +110,22 @@ export function WteLogo({
 }) {
   const preRef = useRef<HTMLPreElement>(null);
   const holderRef = useRef<HTMLSpanElement>(null);
-  const [etched, setEtched] = useState(false);
   const finishedRef = useRef(false);
 
   useEffect(() => {
     if (!active) return;
 
+    let cancelled = false;
+    let playback: Playback | null = null;
+    let stopWatching: (() => void) | null = null;
+    let canvas: HTMLCanvasElement | null = null;
+
     const finish = () => {
       if (finishedRef.current) return;
       finishedRef.current = true;
-      setEtched(true);
-      window.setTimeout(onFinished, CANVAS_FADE_MS);
+      playback?.stop();
+      canvas?.remove();
+      if (!cancelled) onFinished();
     };
 
     if (typeof window === "undefined" || prefersReducedMotion()) {
@@ -113,11 +140,6 @@ export function WteLogo({
       return;
     }
 
-    let cancelled = false;
-    let playback: Playback | null = null;
-    let stopWatching: (() => void) | null = null;
-    let canvas: HTMLCanvasElement | null = null;
-
     const fail = () => {
       playback?.stop();
       stopWatching?.();
@@ -129,25 +151,29 @@ export function WteLogo({
       .then(() => Promise.all([loadWasm(), loadCanvasPlayback()]))
       .then(([wasmBytes, CanvasPlayback]) => {
         if (cancelled) return;
-        const box = pre.getBoundingClientRect();
-        if (box.width < 8 || box.height < 8) {
+        const { columns, rows } = artSize(OMARCHY_ASCII);
+        const ink = asciiInk(pre);
+        if (ink.width < 8 || ink.height < 8) {
           fail();
           return;
         }
 
-        const native = nativeGrid(pre);
         canvas = document.createElement("canvas");
         canvas.setAttribute("aria-hidden", "true");
-        canvas.className = "absolute top-0 left-0 block";
-        canvas.style.width = `${box.width}px`;
-        canvas.style.height = `${box.height}px`;
+        canvas.className = "absolute block";
+        canvas.style.background = "transparent";
+
+        const grid = () => {
+          const next = asciiInk(pre);
+          return gridFor(next.width, next.height, columns, rows);
+        };
 
         playback = new CanvasPlayback({
           canvas,
-          width: () => native.width,
-          height: () => native.height,
+          width: () => grid().width,
+          height: () => grid().height,
           connected: () => canvas != null && canvas.isConnected,
-          input: () => OMARCHY_ASCII.replace(/^\n/, "").replace(/\n+$/, ""),
+          input: () => OMARCHY_ASCII,
           effect: () => EFFECT,
           wasmUrl: () => wasmBytes,
           onFinished: () => {
@@ -158,17 +184,19 @@ export function WteLogo({
 
         const resize = () => {
           if (!canvas) return;
-          const next = pre.getBoundingClientRect();
-          if (next.width < 1 || next.height < 1) return;
-          canvas.style.width = `${next.width}px`;
-          canvas.style.height = `${next.height}px`;
+          fitCanvas(canvas, pre);
         };
         const observer = new ResizeObserver(resize);
         observer.observe(pre);
         stopWatching = () => observer.disconnect();
 
         holder.append(canvas);
-        void playback.restart().catch(fail);
+        void playback
+          .restart()
+          .then(() => {
+            if (!cancelled && canvas) fitCanvas(canvas, pre);
+          })
+          .catch(fail);
       })
       .catch((error: unknown) => {
         console.error("wte logo failed", error);
@@ -187,25 +215,18 @@ export function WteLogo({
     <a
       href="/"
       aria-label="Omarchy"
-      className={cn(
-        "text-omarchy-green pointer-events-auto relative mx-auto block w-full no-underline",
-        className,
-      )}
+      className={cn("pointer-events-auto relative mx-auto block w-full no-underline", className)}
     >
       <AsciiLogo
         className={cn(
-          `text-omarchy-green w-full text-[calc(100cqw/44.25)]`,
-          "transition-opacity duration-700",
-          !active || !etched ? "opacity-0" : "opacity-100",
+          "relative w-full text-[calc(100cqw/44.25)] text-background mix-blend-multiply",
+          active ? "opacity-100" : "opacity-0",
         )}
         ref={preRef}
       />
       <span
         ref={holderRef}
-        className={cn(
-          "pointer-events-none absolute inset-0 block overflow-hidden transition-opacity duration-700",
-          etched ? "opacity-0" : "opacity-100",
-        )}
+        className="pointer-events-none absolute inset-0 block mix-blend-screen"
         aria-hidden="true"
       />
     </a>

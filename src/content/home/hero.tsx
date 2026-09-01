@@ -10,6 +10,7 @@ const HERO_START = "/assets/images/bg/home/hero-start.jpeg";
 const HERO_END = "/assets/images/bg/home/hero-end.jpeg";
 const HERO_VIDEO = "/assets/video/quattro-first-boot.mp4";
 const PLAY_FALLBACK_MS = 8000;
+const VIDEO_CUT_S = 2.85;
 const WORD_WIDTH = "w-[73.8%]";
 
 function prefersReducedMotion() {
@@ -111,7 +112,7 @@ export default function HomeHero() {
   const onTimeUpdate = () => {
     const video = videoRef.current;
     if (!video || endedRef.current) return;
-    if (video.duration > 0 && video.currentTime >= video.duration - 0.2) {
+    if (video.currentTime >= VIDEO_CUT_S) {
       finishVideo();
     }
   };
@@ -129,7 +130,7 @@ export default function HomeHero() {
       <img
         src={HERO_END}
         alt=""
-        className="pointer-events-none absolute inset-0 size-full object-cover object-center"
+        className="pointer-events-none absolute inset-0 size-full scale-110 object-cover object-center blur-2xl"
         width={1920}
         height={1056}
         aria-hidden="true"
@@ -173,7 +174,7 @@ export default function HomeHero() {
           </video>
 
           {etch ? (
-            <div className="pointer-events-none absolute inset-0 z-10 flex -translate-y-4 items-center justify-center mix-blend-screen">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
               <div className={`${WORD_WIDTH} [container-type:inline-size]`}>
                 <WteLogo active onFinished={onLogoFinished} />
               </div>
