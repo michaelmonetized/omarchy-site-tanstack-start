@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { BookOpenIcon, DownloadIcon, GithubIcon } from "lucide-react";
 import { WteLogo } from "@/components/wte-logo";
 import HomeVideos from "./videos";
+import { GITHUB_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const HERO_START = "/assets/images/bg/home/hero-start.jpeg";
@@ -191,6 +194,37 @@ export default function HomeHero() {
             DHH
           </a>
         </h1>
+
+        <div
+          className={cn(
+            "mt-4 flex flex-wrap items-center justify-center gap-2",
+            showTitle ? "animate-hero-copy" : "opacity-0",
+          )}
+        >
+          <Link
+            to="/manual"
+            className="inline-flex items-center gap-1.5 border border-border bg-background/80 px-3 py-1.5 text-xs font-bold text-foreground no-underline backdrop-blur-sm hover:bg-muted"
+          >
+            <BookOpenIcon className="size-3.5" aria-hidden="true" />
+            Manual
+          </Link>
+          <Link
+            to="/install"
+            className="inline-flex items-center gap-1.5 border border-green bg-green px-3 py-1.5 text-xs font-bold text-background no-underline hover:bg-success"
+          >
+            <DownloadIcon className="size-3.5" aria-hidden="true" />
+            ISO
+          </Link>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 border border-border bg-background/80 px-3 py-1.5 text-xs font-bold text-foreground no-underline backdrop-blur-sm hover:bg-muted"
+          >
+            <GithubIcon className="size-3.5" aria-hidden="true" />
+            GitHub
+          </a>
+        </div>
 
         <p
           className={cn(

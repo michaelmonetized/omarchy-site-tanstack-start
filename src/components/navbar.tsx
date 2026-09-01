@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MenuIcon } from "lucide-react";
-import { menu, type MenuItem } from "@/lib/menu";
+import { nav, type MenuItem } from "@/lib/menu";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import {
@@ -37,7 +37,7 @@ function MenuLink({
         rel="noopener noreferrer"
         onClick={onClick}
       >
-        <Icon className="size-3.5" aria-hidden="true" />
+        <Icon className="size-3.5 lg:hidden" aria-hidden="true" />
         <span>{item.anchor}</span>
       </a>
     );
@@ -51,7 +51,7 @@ function MenuLink({
       activeProps={{ className: "text-foreground" }}
       onClick={onClick}
     >
-      <Icon className="size-3.5" aria-hidden="true" />
+      <Icon className="size-3.5 lg:hidden" aria-hidden="true" />
       <span>{item.anchor}</span>
     </Link>
   );
@@ -83,8 +83,8 @@ export default function NavBar({
         </Link>
 
         <div className="hidden min-w-0 flex-1 items-center overflow-x-auto lg:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex items-center whitespace-nowrap lg:[&_svg]:hidden">
-            {menu.map((item) => (
+          <div className="flex items-center whitespace-nowrap">
+            {nav.map((item) => (
               <MenuLink key={item.id} item={item} />
             ))}
           </div>
@@ -105,7 +105,7 @@ export default function NavBar({
                 <SheetDescription className="sr-only">Site navigation</SheetDescription>
               </SheetHeader>
               <div className="flex flex-col overflow-y-auto">
-                {menu.map((item) => (
+                {nav.map((item) => (
                   <MenuLink
                     key={item.id}
                     item={item}

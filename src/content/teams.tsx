@@ -1,17 +1,11 @@
-import { AsciiLogo } from "./ascii-logo";
-
 export function TeamsContent() {
   return (
-    <div className="w-full min-h-screen bg-[var(--color-background-night,#1a1b26)] text-[var(--color-terminal-white,#c0caf5)] font-mono text-sm leading-relaxed p-4 sm:p-6 md:p-8 flex flex-col items-center">
-      <AsciiLogo />
+    <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-8">
+      <h1 className="font-heading mb-8 text-xl font-extrabold text-foreground">
+        The teams guiding Omarchy
+      </h1>
 
-      <header className="header text-center my-6">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-terminal-cyan,#7dcfff)] tracking-tight">
-          The teams guiding Omarchy
-        </h1>
-      </header>
-
-      <main className="main w-full max-w-5xl flex flex-col gap-12 my-6">
+      <main className="flex flex-col gap-12">
         {/* Core Team */}
         <section
           className="team bg-[var(--color-background-storm,#24283b)] p-6 sm:p-8 rounded-xl border border-[var(--border-color,rgba(65,72,104,0.8))] flex flex-col gap-6"

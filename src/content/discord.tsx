@@ -1,26 +1,20 @@
 import { useEffect } from "react";
-import { AsciiLogo } from "./ascii-logo";
+import { DISCORD_URL } from "@/lib/site";
 
 export function DiscordContent() {
   useEffect(() => {
-    window.location.href = "https://discord.gg/tXFUdasqhY";
+    window.location.href = DISCORD_URL;
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[var(--color-background-night,#1a1b26)] text-[var(--color-terminal-white,#c0caf5)] font-mono text-sm leading-relaxed p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center">
-      <AsciiLogo />
-      <header className="header text-center my-6">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--color-terminal-cyan,#7dcfff)]">
-          If you’re not redirected to Discord automatically,{" "}
-          <a
-            href="https://discord.gg/tXFUdasqhY"
-            className="text-[var(--color-terminal-blue,#7aa2f7)] underline"
-          >
-            click here
-          </a>
-          .
-        </h1>
-      </header>
+    <div className="mx-auto flex min-h-[50vh] w-full max-w-3xl items-center justify-center px-4 py-16 text-center">
+      <h1 className="font-heading text-sm font-extrabold text-foreground">
+        If you’re not redirected to Discord automatically,{" "}
+        <a href={DISCORD_URL} className="text-terminal-cyan underline">
+          click here
+        </a>
+        .
+      </h1>
     </div>
   );
 }

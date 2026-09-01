@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { AsciiLogo } from "./ascii-logo";
 
 export interface ThemeItem {
   title: string;
@@ -745,16 +744,10 @@ export function ThemesContent() {
   }, [search]);
 
   return (
-    <div className="w-full min-h-screen bg-[var(--color-background-night,#1a1b26)] text-[var(--color-terminal-white,#c0caf5)] font-mono text-sm leading-relaxed p-4 sm:p-6 md:p-8 flex flex-col items-center">
-      <AsciiLogo />
+    <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-8">
+      <h1 className="font-heading mb-8 text-xl font-extrabold text-foreground">The Extra Themes</h1>
 
-      <header className="header text-center my-6">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-terminal-cyan,#7dcfff)] tracking-tight">
-          The Extra Themes
-        </h1>
-      </header>
-
-      <main className="main w-full max-w-6xl my-6 flex flex-col gap-8">
+      <main className="flex flex-col gap-8">
         <div className="bg-[var(--color-background-storm,#24283b)] p-5 sm:p-6 rounded-xl border border-[var(--border-color,rgba(65,72,104,0.8))]">
           <p className="themes__intro text-sm sm:text-base text-[var(--color-terminal-white,#c0caf5)] leading-relaxed">
             Install any of these community themes by copying its GitHub URL and selecting{" "}

@@ -1,4 +1,5 @@
 export * from "./ascii-logo";
+export * from "./brand";
 export * from "./home";
 export * from "./air";
 export * from "./discord";

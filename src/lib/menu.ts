@@ -1,11 +1,10 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  BookOpenIcon,
   CalendarIcon,
-  DownloadIcon,
-  GithubIcon,
+  CpuIcon,
   HeartIcon,
   HandshakeIcon,
+  LaptopIcon,
   MessageCircleIcon,
   MonitorIcon,
   NewspaperIcon,
@@ -25,21 +24,20 @@ export type MenuItem = {
   external?: boolean;
 };
 
-export const menu: MenuItem[] = [
+export const nav: MenuItem[] = [
   {
-    id: "manual",
-    anchor: "Manual",
-    href: "/manual",
-    icon: BookOpenIcon,
-    title: "The Omarchy Manual.",
+    id: "news",
+    anchor: "News",
+    href: "/news",
+    icon: NewspaperIcon,
+    title: "Notes on the people, ideas, and releases shaping Omarchy.",
   },
   {
-    id: "iso",
-    anchor: "ISO",
-    href: "https://iso.omarchy.org/omarchy-4.0.2.iso",
-    icon: DownloadIcon,
-    title: "Download the Omarchy ISO.",
-    external: true,
+    id: "security",
+    anchor: "Security",
+    href: "/security",
+    icon: ShieldAlertIcon,
+    title: "How to responsibly report a security vulnerability in Omarchy.",
   },
   {
     id: "plugins",
@@ -50,76 +48,11 @@ export const menu: MenuItem[] = [
     external: true,
   },
   {
-    id: "github",
-    anchor: "GitHub",
-    href: "https://github.com/omacom/omarchy",
-    icon: GithubIcon,
-    title: "The Omarchy source.",
-    external: true,
-  },
-  {
-    id: "security",
-    anchor: "Security",
-    href: "/security",
-    icon: ShieldAlertIcon,
-    title: "How to responsibly report a security vulnerability in Omarchy.",
-  },
-  {
-    id: "news",
-    anchor: "News",
-    href: "/news",
-    icon: NewspaperIcon,
-    title: "Notes on the people, ideas, and releases shaping Omarchy.",
-  },
-  {
-    id: "teams",
-    anchor: "Teams",
-    href: "/teams",
-    icon: UsersIcon,
-    title: "The teams guiding Omarchy.",
-  },
-  {
-    id: "patrons",
-    anchor: "Patrons",
-    href: "/patrons",
-    icon: HeartIcon,
-    title: "The patrons funding Omarchy.",
-  },
-  {
-    id: "sponsors",
-    anchor: "Sponsorships",
-    href: "/sponsorships",
-    icon: HandshakeIcon,
-    title: "The projects Omarchy sponsors.",
-  },
-  {
-    id: "air",
-    anchor: "AIR",
-    href: "/air",
-    icon: PaletteIcon,
-    title: "Artists in Residence.",
-  },
-  {
-    id: "discord",
-    anchor: "Discord",
-    href: "https://discord.gg/tXFUdasqhY",
-    icon: MessageCircleIcon,
-    title: "The Omarchy Discord.",
-    external: true,
-  },
-  {
     id: "meetups",
     anchor: "Meetups",
     href: "/meetups",
     icon: CalendarIcon,
     title: "Omarchy meetups.",
-  },
-  {
-    id: "workstations",
-    anchor: "Workstations",
-    href: "/workstations",
-    icon: MonitorIcon,
-    title: "Workstations running Omarchy.",
   },
   {
     id: "merch",
@@ -130,3 +63,87 @@ export const menu: MenuItem[] = [
     external: true,
   },
 ];
+
+export const footerColumns: { heading: string; items: MenuItem[] }[] = [
+  {
+    heading: "Install",
+    items: [
+      {
+        id: "install-pc",
+        anchor: "PC",
+        href: "/install/pc",
+        icon: MonitorIcon,
+        title: "Install Omarchy on a PC.",
+      },
+      {
+        id: "install-intel",
+        anchor: "Intel Mac",
+        href: "/install/mac/intel",
+        icon: LaptopIcon,
+        title: "Install Omarchy on an Intel Mac.",
+      },
+      {
+        id: "install-arm",
+        anchor: "Apple Silicon",
+        href: "/install/mac/arm",
+        icon: CpuIcon,
+        title: "Install Omarchy on Apple Silicon.",
+      },
+    ],
+  },
+  {
+    heading: "The system",
+    items: [
+      {
+        id: "workstations",
+        anchor: "Workstations",
+        href: "/workstations",
+        icon: MonitorIcon,
+        title: "Workstations running Omarchy.",
+      },
+      {
+        id: "teams",
+        anchor: "Teams",
+        href: "/teams",
+        icon: UsersIcon,
+        title: "The teams guiding Omarchy.",
+      },
+      {
+        id: "air",
+        anchor: "AIR",
+        href: "/air",
+        icon: PaletteIcon,
+        title: "Artists in Residence.",
+      },
+    ],
+  },
+  {
+    heading: "The foundation",
+    items: [
+      {
+        id: "patrons",
+        anchor: "Patrons",
+        href: "/patrons",
+        icon: HeartIcon,
+        title: "The patrons funding Omarchy.",
+      },
+      {
+        id: "sponsors",
+        anchor: "Sponsorships",
+        href: "/sponsorships",
+        icon: HandshakeIcon,
+        title: "The projects Omarchy sponsors.",
+      },
+      {
+        id: "discord",
+        anchor: "Discord",
+        href: "https://discord.gg/tXFUdasqhY",
+        icon: MessageCircleIcon,
+        title: "The Omarchy Discord.",
+        external: true,
+      },
+    ],
+  },
+];
+
+export const menu = nav;

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AsciiLogo } from "./ascii-logo";
 
 export const WORKSTATION_IMAGES: string[] = [
   "/assets/workstations/P1554011.jpg",
@@ -88,21 +87,17 @@ export function WorkstationsContent() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <div className="w-full min-h-screen bg-[var(--color-background-night,#1a1b26)] text-[var(--color-terminal-white,#c0caf5)] font-mono text-sm leading-relaxed p-4 sm:p-6 md:p-8 flex flex-col items-center">
-      <AsciiLogo />
+    <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-8">
+      <h1 className="font-heading mb-8 text-xl font-extrabold text-foreground">
+        <a
+          href="https://discord.com/channels/1390012484194275541/1399365919293051010"
+          className="text-foreground no-underline hover:text-terminal-cyan"
+        >
+          #omarchy-workstations
+        </a>
+      </h1>
 
-      <header className="header text-center my-6">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-terminal-cyan,#7dcfff)] tracking-tight">
-          <a
-            href="https://discord.com/channels/1390012484194275541/1399365919293051010"
-            className="hover:underline"
-          >
-            #omarchy-workstations
-          </a>
-        </h1>
-      </header>
-
-      <main className="main w-full max-w-6xl my-6">
+      <main>
         <div className="workstations__images grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {WORKSTATION_IMAGES.map((imgSrc, idx) => (
             <button

@@ -1,8 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SecurityContent } from "@/content/security";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/security")({
   staticData: { layout: "default" },
-  component: SecurityContent,
+  component: SecurityLayout,
   head: () => ({ meta: [{ title: "Security — Omarchy" }] }),
 });
+
+function SecurityLayout() {
+  return <Outlet />;
+}

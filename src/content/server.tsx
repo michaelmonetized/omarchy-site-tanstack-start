@@ -1,6 +1,6 @@
 export function ServerContent() {
   return (
-    <div className="w-full min-h-screen bg-[var(--color-background-night,#1a1b26)] text-[var(--color-terminal-white,#c0caf5)] font-mono text-sm leading-relaxed p-4 flex flex-col items-center justify-center">
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-16">
       <main className="main main--error flex flex-col items-center justify-center gap-6">
         <div className="server max-w-3xl flex flex-col items-center gap-4">
           <a href="/" aria-label="Omarchy">

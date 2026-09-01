@@ -37,9 +37,21 @@ export const Route = createRootRoute({
     ],
   }),
   notFoundComponent: NotFoundContent,
+  errorComponent: RootError,
   component: RootComponent,
   shellComponent: RootDocument,
 });
+
+function RootError({ error }: { error: Error }) {
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-16">
+      <h1 className="font-heading text-xl font-extrabold text-foreground">Something broke</h1>
+      <pre className="mt-4 overflow-x-auto whitespace-pre-wrap text-xs text-muted-foreground">
+        {error.stack ?? error.message}
+      </pre>
+    </main>
+  );
+}
 
 function RootComponent() {
   return (

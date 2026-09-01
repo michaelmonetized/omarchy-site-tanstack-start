@@ -12,22 +12,33 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AirRouteImport } from './routes/air'
+import { Route as BrandRouteImport } from './routes/brand'
 import { Route as DiscordRouteImport } from './routes/discord'
+import { Route as FoundationRouteImport } from './routes/foundation'
+import { Route as InstallRouteRouteImport } from './routes/install/route'
 import { Route as ManualRouteRouteImport } from './routes/manual/route'
 import { Route as MeetupsRouteImport } from './routes/meetups'
-import { Route as NewsRouteImport } from './routes/news'
+import { Route as NewsRouteRouteImport } from './routes/news/route'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PatronsRouteImport } from './routes/patrons'
 import { Route as PotatoRouteImport } from './routes/potato'
-import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SecurityRouteRouteImport } from './routes/security/route'
 import { Route as ServerRouteImport } from './routes/server'
 import { Route as SponsorshipsRouteImport } from './routes/sponsorships'
 import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as ThemesRouteImport } from './routes/themes'
 import { Route as WorkstationsRouteImport } from './routes/workstations'
+import { Route as InstallIndexRouteImport } from './routes/install/index'
+import { Route as InstallPcRouteImport } from './routes/install/pc'
 import { Route as ManualIndexRouteImport } from './routes/manual/index'
 import { Route as ManualSlugRouteImport } from './routes/manual/$slug'
 import { Route as ManualTocRouteImport } from './routes/manual/toc'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as SecurityIndexRouteImport } from './routes/security/index'
+import { Route as SecurityCreditsRouteImport } from './routes/security/credits'
+import { Route as InstallMacArmRouteImport } from './routes/install/mac.arm'
+import { Route as InstallMacIntelRouteImport } from './routes/install/mac.intel'
+import { Route as NewsYearMonthSlugRouteImport } from './routes/news/$year.$month.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -44,9 +55,24 @@ const AirRoute = AirRouteImport.update({
   path: '/air',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandRoute = BrandRouteImport.update({
+  id: '/brand',
+  path: '/brand',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiscordRoute = DiscordRouteImport.update({
   id: '/discord',
   path: '/discord',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoundationRoute = FoundationRouteImport.update({
+  id: '/foundation',
+  path: '/foundation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallRouteRoute = InstallRouteRouteImport.update({
+  id: '/install',
+  path: '/install',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManualRouteRoute = ManualRouteRouteImport.update({
@@ -59,7 +85,7 @@ const MeetupsRoute = MeetupsRouteImport.update({
   path: '/meetups',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewsRoute = NewsRouteImport.update({
+const NewsRouteRoute = NewsRouteRouteImport.update({
   id: '/news',
   path: '/news',
   getParentRoute: () => rootRouteImport,
@@ -79,7 +105,7 @@ const PotatoRoute = PotatoRouteImport.update({
   path: '/potato',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SecurityRoute = SecurityRouteImport.update({
+const SecurityRouteRoute = SecurityRouteRouteImport.update({
   id: '/security',
   path: '/security',
   getParentRoute: () => rootRouteImport,
@@ -109,6 +135,16 @@ const WorkstationsRoute = WorkstationsRouteImport.update({
   path: '/workstations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstallIndexRoute = InstallIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InstallRouteRoute,
+} as any)
+const InstallPcRoute = InstallPcRouteImport.update({
+  id: '/pc',
+  path: '/pc',
+  getParentRoute: () => InstallRouteRoute,
+} as any)
 const ManualIndexRoute = ManualIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -124,147 +160,240 @@ const ManualTocRoute = ManualTocRouteImport.update({
   path: '/toc',
   getParentRoute: () => ManualRouteRoute,
 } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NewsRouteRoute,
+} as any)
+const SecurityIndexRoute = SecurityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SecurityRouteRoute,
+} as any)
+const SecurityCreditsRoute = SecurityCreditsRouteImport.update({
+  id: '/credits',
+  path: '/credits',
+  getParentRoute: () => SecurityRouteRoute,
+} as any)
+const InstallMacArmRoute = InstallMacArmRouteImport.update({
+  id: '/mac/arm',
+  path: '/mac/arm',
+  getParentRoute: () => InstallRouteRoute,
+} as any)
+const InstallMacIntelRoute = InstallMacIntelRouteImport.update({
+  id: '/mac/intel',
+  path: '/mac/intel',
+  getParentRoute: () => InstallRouteRoute,
+} as any)
+const NewsYearMonthSlugRoute = NewsYearMonthSlugRouteImport.update({
+  id: '/$year/$month/$slug',
+  path: '/$year/$month/$slug',
+  getParentRoute: () => NewsRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/install': typeof InstallRouteRouteWithChildren
   '/manual': typeof ManualRouteRouteWithChildren
+  '/news': typeof NewsRouteRouteWithChildren
+  '/security': typeof SecurityRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/air': typeof AirRoute
+  '/brand': typeof BrandRoute
   '/discord': typeof DiscordRoute
+  '/foundation': typeof FoundationRoute
   '/meetups': typeof MeetupsRoute
-  '/news': typeof NewsRoute
   '/partners': typeof PartnersRoute
   '/patrons': typeof PatronsRoute
   '/potato': typeof PotatoRoute
-  '/security': typeof SecurityRoute
   '/server': typeof ServerRoute
   '/sponsorships': typeof SponsorshipsRoute
   '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
+  '/install/pc': typeof InstallPcRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/manual/toc': typeof ManualTocRoute
+  '/security/credits': typeof SecurityCreditsRoute
+  '/install/': typeof InstallIndexRoute
   '/manual/': typeof ManualIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/security/': typeof SecurityIndexRoute
+  '/install/mac/arm': typeof InstallMacArmRoute
+  '/install/mac/intel': typeof InstallMacIntelRoute
+  '/news/$year/$month/$slug': typeof NewsYearMonthSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/air': typeof AirRoute
+  '/brand': typeof BrandRoute
   '/discord': typeof DiscordRoute
+  '/foundation': typeof FoundationRoute
   '/meetups': typeof MeetupsRoute
-  '/news': typeof NewsRoute
   '/partners': typeof PartnersRoute
   '/patrons': typeof PatronsRoute
   '/potato': typeof PotatoRoute
-  '/security': typeof SecurityRoute
   '/server': typeof ServerRoute
   '/sponsorships': typeof SponsorshipsRoute
   '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
+  '/install/pc': typeof InstallPcRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/manual/toc': typeof ManualTocRoute
+  '/security/credits': typeof SecurityCreditsRoute
+  '/install': typeof InstallIndexRoute
   '/manual': typeof ManualIndexRoute
+  '/news': typeof NewsIndexRoute
+  '/security': typeof SecurityIndexRoute
+  '/install/mac/arm': typeof InstallMacArmRoute
+  '/install/mac/intel': typeof InstallMacIntelRoute
+  '/news/$year/$month/$slug': typeof NewsYearMonthSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/install': typeof InstallRouteRouteWithChildren
   '/manual': typeof ManualRouteRouteWithChildren
+  '/news': typeof NewsRouteRouteWithChildren
+  '/security': typeof SecurityRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/air': typeof AirRoute
+  '/brand': typeof BrandRoute
   '/discord': typeof DiscordRoute
+  '/foundation': typeof FoundationRoute
   '/meetups': typeof MeetupsRoute
-  '/news': typeof NewsRoute
   '/partners': typeof PartnersRoute
   '/patrons': typeof PatronsRoute
   '/potato': typeof PotatoRoute
-  '/security': typeof SecurityRoute
   '/server': typeof ServerRoute
   '/sponsorships': typeof SponsorshipsRoute
   '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/workstations': typeof WorkstationsRoute
+  '/install/pc': typeof InstallPcRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/manual/toc': typeof ManualTocRoute
+  '/security/credits': typeof SecurityCreditsRoute
+  '/install/': typeof InstallIndexRoute
   '/manual/': typeof ManualIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/security/': typeof SecurityIndexRoute
+  '/install/mac/arm': typeof InstallMacArmRoute
+  '/install/mac/intel': typeof InstallMacIntelRoute
+  '/news/$year/$month/$slug': typeof NewsYearMonthSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/install'
     | '/manual'
+    | '/news'
+    | '/security'
     | '/about'
     | '/air'
+    | '/brand'
     | '/discord'
+    | '/foundation'
     | '/meetups'
-    | '/news'
     | '/partners'
     | '/patrons'
     | '/potato'
-    | '/security'
     | '/server'
     | '/sponsorships'
     | '/teams'
     | '/themes'
     | '/workstations'
+    | '/install/pc'
     | '/manual/$slug'
     | '/manual/toc'
+    | '/security/credits'
+    | '/install/'
     | '/manual/'
+    | '/news/'
+    | '/security/'
+    | '/install/mac/arm'
+    | '/install/mac/intel'
+    | '/news/$year/$month/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/air'
+    | '/brand'
     | '/discord'
+    | '/foundation'
     | '/meetups'
-    | '/news'
     | '/partners'
     | '/patrons'
     | '/potato'
-    | '/security'
     | '/server'
     | '/sponsorships'
     | '/teams'
     | '/themes'
     | '/workstations'
+    | '/install/pc'
     | '/manual/$slug'
     | '/manual/toc'
+    | '/security/credits'
+    | '/install'
     | '/manual'
+    | '/news'
+    | '/security'
+    | '/install/mac/arm'
+    | '/install/mac/intel'
+    | '/news/$year/$month/$slug'
   id:
     | '__root__'
     | '/'
+    | '/install'
     | '/manual'
+    | '/news'
+    | '/security'
     | '/about'
     | '/air'
+    | '/brand'
     | '/discord'
+    | '/foundation'
     | '/meetups'
-    | '/news'
     | '/partners'
     | '/patrons'
     | '/potato'
-    | '/security'
     | '/server'
     | '/sponsorships'
     | '/teams'
     | '/themes'
     | '/workstations'
+    | '/install/pc'
     | '/manual/$slug'
     | '/manual/toc'
+    | '/security/credits'
+    | '/install/'
     | '/manual/'
+    | '/news/'
+    | '/security/'
+    | '/install/mac/arm'
+    | '/install/mac/intel'
+    | '/news/$year/$month/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InstallRouteRoute: typeof InstallRouteRouteWithChildren
   ManualRouteRoute: typeof ManualRouteRouteWithChildren
+  NewsRouteRoute: typeof NewsRouteRouteWithChildren
+  SecurityRouteRoute: typeof SecurityRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AirRoute: typeof AirRoute
+  BrandRoute: typeof BrandRoute
   DiscordRoute: typeof DiscordRoute
+  FoundationRoute: typeof FoundationRoute
   MeetupsRoute: typeof MeetupsRoute
-  NewsRoute: typeof NewsRoute
   PartnersRoute: typeof PartnersRoute
   PatronsRoute: typeof PatronsRoute
   PotatoRoute: typeof PotatoRoute
-  SecurityRoute: typeof SecurityRoute
   ServerRoute: typeof ServerRoute
   SponsorshipsRoute: typeof SponsorshipsRoute
   TeamsRoute: typeof TeamsRoute
@@ -295,11 +424,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AirRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand': {
+      id: '/brand'
+      path: '/brand'
+      fullPath: '/brand'
+      preLoaderRoute: typeof BrandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/discord': {
       id: '/discord'
       path: '/discord'
       fullPath: '/discord'
       preLoaderRoute: typeof DiscordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foundation': {
+      id: '/foundation'
+      path: '/foundation'
+      fullPath: '/foundation'
+      preLoaderRoute: typeof FoundationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/install': {
+      id: '/install'
+      path: '/install'
+      fullPath: '/install'
+      preLoaderRoute: typeof InstallRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manual': {
@@ -320,7 +470,7 @@ declare module '@tanstack/react-router' {
       id: '/news'
       path: '/news'
       fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
+      preLoaderRoute: typeof NewsRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partners': {
@@ -348,7 +498,7 @@ declare module '@tanstack/react-router' {
       id: '/security'
       path: '/security'
       fullPath: '/security'
-      preLoaderRoute: typeof SecurityRouteImport
+      preLoaderRoute: typeof SecurityRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/server': {
@@ -386,6 +536,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkstationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/install/': {
+      id: '/install/'
+      path: '/'
+      fullPath: '/install/'
+      preLoaderRoute: typeof InstallIndexRouteImport
+      parentRoute: typeof InstallRouteRoute
+    }
+    '/install/pc': {
+      id: '/install/pc'
+      path: '/pc'
+      fullPath: '/install/pc'
+      preLoaderRoute: typeof InstallPcRouteImport
+      parentRoute: typeof InstallRouteRoute
+    }
     '/manual/': {
       id: '/manual/'
       path: '/'
@@ -407,8 +571,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManualTocRouteImport
       parentRoute: typeof ManualRouteRoute
     }
+    '/news/': {
+      id: '/news/'
+      path: '/'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof NewsRouteRoute
+    }
+    '/security/': {
+      id: '/security/'
+      path: '/'
+      fullPath: '/security/'
+      preLoaderRoute: typeof SecurityIndexRouteImport
+      parentRoute: typeof SecurityRouteRoute
+    }
+    '/security/credits': {
+      id: '/security/credits'
+      path: '/credits'
+      fullPath: '/security/credits'
+      preLoaderRoute: typeof SecurityCreditsRouteImport
+      parentRoute: typeof SecurityRouteRoute
+    }
+    '/install/mac/arm': {
+      id: '/install/mac/arm'
+      path: '/mac/arm'
+      fullPath: '/install/mac/arm'
+      preLoaderRoute: typeof InstallMacArmRouteImport
+      parentRoute: typeof InstallRouteRoute
+    }
+    '/install/mac/intel': {
+      id: '/install/mac/intel'
+      path: '/mac/intel'
+      fullPath: '/install/mac/intel'
+      preLoaderRoute: typeof InstallMacIntelRouteImport
+      parentRoute: typeof InstallRouteRoute
+    }
+    '/news/$year/$month/$slug': {
+      id: '/news/$year/$month/$slug'
+      path: '/$year/$month/$slug'
+      fullPath: '/news/$year/$month/$slug'
+      preLoaderRoute: typeof NewsYearMonthSlugRouteImport
+      parentRoute: typeof NewsRouteRoute
+    }
   }
 }
+
+interface InstallRouteRouteChildren {
+  InstallPcRoute: typeof InstallPcRoute
+  InstallIndexRoute: typeof InstallIndexRoute
+  InstallMacArmRoute: typeof InstallMacArmRoute
+  InstallMacIntelRoute: typeof InstallMacIntelRoute
+}
+
+const InstallRouteRouteChildren: InstallRouteRouteChildren = {
+  InstallPcRoute: InstallPcRoute,
+  InstallIndexRoute: InstallIndexRoute,
+  InstallMacArmRoute: InstallMacArmRoute,
+  InstallMacIntelRoute: InstallMacIntelRoute,
+}
+
+const InstallRouteRouteWithChildren = InstallRouteRoute._addFileChildren(
+  InstallRouteRouteChildren,
+)
 
 interface ManualRouteRouteChildren {
   ManualSlugRoute: typeof ManualSlugRoute
@@ -426,18 +650,49 @@ const ManualRouteRouteWithChildren = ManualRouteRoute._addFileChildren(
   ManualRouteRouteChildren,
 )
 
+interface NewsRouteRouteChildren {
+  NewsIndexRoute: typeof NewsIndexRoute
+  NewsYearMonthSlugRoute: typeof NewsYearMonthSlugRoute
+}
+
+const NewsRouteRouteChildren: NewsRouteRouteChildren = {
+  NewsIndexRoute: NewsIndexRoute,
+  NewsYearMonthSlugRoute: NewsYearMonthSlugRoute,
+}
+
+const NewsRouteRouteWithChildren = NewsRouteRoute._addFileChildren(
+  NewsRouteRouteChildren,
+)
+
+interface SecurityRouteRouteChildren {
+  SecurityCreditsRoute: typeof SecurityCreditsRoute
+  SecurityIndexRoute: typeof SecurityIndexRoute
+}
+
+const SecurityRouteRouteChildren: SecurityRouteRouteChildren = {
+  SecurityCreditsRoute: SecurityCreditsRoute,
+  SecurityIndexRoute: SecurityIndexRoute,
+}
+
+const SecurityRouteRouteWithChildren = SecurityRouteRoute._addFileChildren(
+  SecurityRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InstallRouteRoute: InstallRouteRouteWithChildren,
   ManualRouteRoute: ManualRouteRouteWithChildren,
+  NewsRouteRoute: NewsRouteRouteWithChildren,
+  SecurityRouteRoute: SecurityRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AirRoute: AirRoute,
+  BrandRoute: BrandRoute,
   DiscordRoute: DiscordRoute,
+  FoundationRoute: FoundationRoute,
   MeetupsRoute: MeetupsRoute,
-  NewsRoute: NewsRoute,
   PartnersRoute: PartnersRoute,
   PatronsRoute: PatronsRoute,
   PotatoRoute: PotatoRoute,
-  SecurityRoute: SecurityRoute,
   ServerRoute: ServerRoute,
   SponsorshipsRoute: SponsorshipsRoute,
   TeamsRoute: TeamsRoute,
