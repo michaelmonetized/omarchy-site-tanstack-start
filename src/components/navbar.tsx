@@ -82,7 +82,7 @@ export default function NavBar({
           />
         </Link>
 
-        <div className="hidden min-w-0 flex-1 items-center overflow-x-auto lg:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="hidden min-w-0 flex-1 items-center justify-end overflow-x-auto lg:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex items-center whitespace-nowrap">
             {nav.map((item) => (
               <MenuLink key={item.id} item={item} />
