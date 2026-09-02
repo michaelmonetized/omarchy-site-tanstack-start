@@ -27,6 +27,12 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function isIOS() {
+  const ua = navigator.userAgent;
+  if (/iP(hone|od|ad)/.test(ua)) return true;
+  return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+}
+
 async function loadWasm() {
   const response = await fetch(WTE_WASM_URL);
   if (!response.ok) {
@@ -128,7 +134,7 @@ export function WteLogo({
       if (!cancelled) onFinished();
     };
 
-    if (typeof window === "undefined" || prefersReducedMotion()) {
+    if (typeof window === "undefined" || prefersReducedMotion() || isIOS()) {
       finish();
       return;
     }
@@ -219,7 +225,7 @@ export function WteLogo({
     >
       <AsciiLogo
         className={cn(
-          "relative w-full text-[calc(100cqw/44.25)] text-background mix-blend-multiply",
+          "relative w-full text-[calc(73.8cqw/44.25)] text-background mix-blend-multiply",
           active ? "opacity-100" : "opacity-0",
         )}
         ref={preRef}

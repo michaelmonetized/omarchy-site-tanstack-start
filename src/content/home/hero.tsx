@@ -137,7 +137,7 @@ export default function HomeHero() {
       />
 
       <div className="relative flex min-h-0 flex-1 items-center justify-center md:absolute md:inset-0">
-        <div className="relative aspect-[1920/1056] h-auto max-h-full w-full max-w-full md:w-[min(100%,calc(100svh*1920/1056))]">
+        <div className="relative isolate aspect-[1920/1056] h-auto max-h-full w-full max-w-full [container-type:inline-size] md:w-[min(100%,calc(100svh*1920/1056))]">
           <img
             src={HERO_END}
             alt=""
@@ -148,11 +148,7 @@ export default function HomeHero() {
           />
           <video
             ref={videoRef}
-            className={cn(
-              frameClass,
-              "[transform:translateZ(0)] transition-opacity duration-700",
-              videoGone ? "pointer-events-none opacity-0" : "opacity-100",
-            )}
+            className={cn(frameClass, "[transform:translateZ(0)]", videoGone && "hidden")}
             poster={HERO_START}
             width={1920}
             height={1056}
@@ -175,7 +171,7 @@ export default function HomeHero() {
 
           {etch ? (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className={`${WORD_WIDTH} [container-type:inline-size]`}>
+              <div className={WORD_WIDTH}>
                 <WteLogo active onFinished={onLogoFinished} />
               </div>
             </div>
