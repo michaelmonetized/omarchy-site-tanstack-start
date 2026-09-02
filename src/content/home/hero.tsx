@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { BookOpenIcon, DownloadIcon, GithubIcon } from "lucide-react";
+import { BookOpenIcon, DownloadIcon, GitForkIcon } from "lucide-react";
 import { WteLogo } from "@/components/wte-logo";
 import HomeVideos from "./videos";
 import { GITHUB_URL } from "@/lib/site";
@@ -214,18 +214,18 @@ export default function HomeHero() {
           )}
         >
           <Link
-            to="/manual"
-            className="border-border bg-background/80 text-foreground hover:bg-muted inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline backdrop-blur-sm"
-          >
-            <BookOpenIcon className="size-3.5" aria-hidden="true" />
-            Manual
-          </Link>
-          <Link
             to="/install"
             className="border-green bg-green text-background hover:bg-success inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline"
           >
             <DownloadIcon className="size-3.5" aria-hidden="true" />
-            ISO
+            Install
+          </Link>
+          <Link
+            to="/manual"
+            className="border-border bg-background/80 text-foreground hover:bg-muted inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline backdrop-blur-sm"
+          >
+            <BookOpenIcon className="size-3.5" aria-hidden="true" />
+            Learn
           </Link>
           <a
             href={GITHUB_URL}
@@ -233,8 +233,8 @@ export default function HomeHero() {
             rel="noopener noreferrer"
             className="border-border bg-background/80 text-foreground hover:bg-muted inline-flex items-center gap-1.5 border px-3 py-1.5 text-xs font-bold no-underline backdrop-blur-sm"
           >
-            <GithubIcon className="size-3.5" aria-hidden="true" />
-            GitHub
+            <GitForkIcon className="size-3.5" aria-hidden="true" />
+            Fork
           </a>
         </div>
 
