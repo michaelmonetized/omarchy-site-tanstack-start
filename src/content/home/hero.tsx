@@ -137,7 +137,7 @@ export default function HomeHero() {
       />
 
       <div className="relative flex min-h-0 flex-1 items-center justify-center md:absolute md:inset-0">
-        <div className="relative isolate aspect-[1920/1056] h-auto max-h-full w-full max-w-full [container-type:inline-size] md:w-[min(100%,calc(100svh*1920/1056))]">
+        <div className="relative aspect-[1920/1056] h-auto max-h-full w-full max-w-full [container-type:inline-size] md:w-[min(100%,calc(100svh*1920/1056))]">
           <img
             src={HERO_END}
             alt=""
@@ -170,9 +170,11 @@ export default function HomeHero() {
           </video>
 
           {etch ? (
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className={WORD_WIDTH}>
-                <WteLogo active onFinished={onLogoFinished} />
+            <div className="pointer-events-none absolute inset-0 mix-blend-screen">
+              <div className="flex size-full items-center justify-center">
+                <div className={WORD_WIDTH}>
+                  <WteLogo active onFinished={onLogoFinished} />
+                </div>
               </div>
             </div>
           ) : null}
