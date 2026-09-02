@@ -46,6 +46,11 @@ export const INITIAL_INVESTMENT_DATA: InvestmentRecord[] = [
     date: 1788184247,
     amount: 12600000.0,
   },
+  {
+    id: "i5",
+    date: 1788347325,
+    amount: 13000000.0,
+  },
 ];
 
 export const INITIAL_ANALYTICS_DATA: AnalyticsRecord[] = [

@@ -1,4 +1,4 @@
-import { FOUNDING_PATRONS } from "@/lib/patrons";
+import { DISTINGUISHED_CORPORATE, DISTINGUISHED_PATRONS, FOUNDING_PATRONS } from "@/lib/patrons";
 
 export function PatronsContent() {
   return (
@@ -39,19 +39,30 @@ export function PatronsContent() {
                     {p.name}
                   </a>
                 </h3>
-                <p className="member__meta text-xs text-[var(--color-terminal-black,#565f89)]">
-                  <a href={p.orgUrl} className="hover:underline">
-                    {p.org}
-                  </a>
-                </p>
+                <a
+                  href={p.orgUrl}
+                  title={p.org}
+                  className="mt-1 inline-flex size-8 items-center justify-center"
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.org}
+                    className="max-h-8 max-w-8 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
               </article>
             ))}
           </div>
         </section>
 
         {/* Distinguished Patrons */}
-        <section className="team bg-[var(--color-background-storm,#24283b)] p-6 sm:p-8 rounded-xl border border-[var(--border-color,rgba(65,72,104,0.8))]">
-          <header className="team__header border-b border-[var(--border-color,rgba(65,72,104,0.8))] pb-4 mb-4">
+        <section
+          id="distinguished-patrons"
+          className="team bg-[var(--color-background-storm,#24283b)] p-6 sm:p-8 rounded-xl border border-[var(--border-color,rgba(65,72,104,0.8))]"
+        >
+          <header className="team__header border-b border-[var(--border-color,rgba(65,72,104,0.8))] pb-4 mb-6">
             <h2 className="team__name text-xl sm:text-2xl font-bold text-white mb-1">
               Distinguished Patrons
             </h2>
@@ -60,7 +71,44 @@ export function PatronsContent() {
             </p>
           </header>
 
-          <p className="team__note text-sm text-[var(--color-terminal-white,#c0caf5)]">
+          <div className="team__members grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {DISTINGUISHED_PATRONS.map((p) => (
+              <article key={p.name} className="member flex flex-col items-center text-center group">
+                <img
+                  className="member__avatar w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-white/10 group-hover:border-[var(--color-terminal-cyan,#7dcfff)] transition-colors mb-3"
+                  src={p.avatar}
+                  width={240}
+                  height={240}
+                  alt={p.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 className="member__name text-sm font-bold text-white mb-1">
+                  <a
+                    href={p.url}
+                    className="hover:text-[var(--color-terminal-cyan,#7dcfff)] underline"
+                  >
+                    {p.name}
+                  </a>
+                </h3>
+                <a
+                  href={p.orgUrl}
+                  title={p.org}
+                  className="mt-1 inline-flex size-8 items-center justify-center"
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.org}
+                    className="max-h-8 max-w-8 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <p className="team__note mt-8 text-sm text-[var(--color-terminal-white,#c0caf5)]">
             Get in touch with{" "}
             <a
               href="mailto:david@omarchy.org"
@@ -69,6 +117,44 @@ export function PatronsContent() {
               david@omarchy.org
             </a>
           </p>
+        </section>
+
+        {/* Distinguished Corporate Patrons */}
+        <section className="team bg-[var(--color-background-storm,#24283b)] p-6 sm:p-8 rounded-xl border border-[var(--border-color,rgba(65,72,104,0.8))]">
+          <header className="team__header border-b border-[var(--border-color,rgba(65,72,104,0.8))] pb-4 mb-6">
+            <h2 className="team__name text-xl sm:text-2xl font-bold text-white mb-1">
+              Distinguished Corporate Patrons
+            </h2>
+            <p className="team__description text-sm text-[var(--color-turquoise,#b4f9f8)]">
+              Each contributing $100,000 a year for three years
+            </p>
+          </header>
+
+          <div className="team__members grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {DISTINGUISHED_CORPORATE.map((p) => (
+              <article key={p.name} className="member flex flex-col items-center text-center group">
+                <a href={p.url} className="block no-underline" title={p.name}>
+                  <img
+                    className="member__avatar mb-3 h-24 w-24 object-contain sm:h-28 sm:w-28"
+                    src={p.logo}
+                    width={240}
+                    height={240}
+                    alt={p.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <h3 className="member__name text-sm font-bold text-white mb-1">
+                  <a
+                    href={p.url}
+                    className="hover:text-[var(--color-terminal-cyan,#7dcfff)] underline"
+                  >
+                    {p.name}
+                  </a>
+                </h3>
+              </article>
+            ))}
+          </div>
         </section>
 
         {/* Patrons */}

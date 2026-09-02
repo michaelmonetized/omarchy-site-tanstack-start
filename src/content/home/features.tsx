@@ -155,30 +155,22 @@ function HyprlandMock() {
 function QuickshellMock() {
   return (
     <MockFrame>
-      <div className="grid gap-px bg-border">
-        <img
-          src="/assets/images/mocks/branding-screensaver.webp"
-          alt="Omarchy screensaver"
-          className="aspect-video w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="grid grid-cols-2 gap-px">
+      <div className="grid grid-cols-2 gap-px bg-border">
+        {[
+          { src: "/assets/images/mocks/shell-bar.webp", alt: "Omarchy bar" },
+          { src: "/assets/images/mocks/notice-weather.webp", alt: "Weather panel" },
+          { src: "/assets/images/mocks/clipboard-history.webp", alt: "Clipboard overlay" },
+          { src: "/assets/images/mocks/lock-screen.webp", alt: "Lock screen" },
+        ].map((shot) => (
           <img
-            src="/assets/images/mocks/notice-weather.webp"
-            alt="Weather notice"
+            key={shot.src}
+            src={shot.src}
+            alt={shot.alt}
             className="aspect-video w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-          <img
-            src="/assets/images/mocks/clipboard-history.webp"
-            alt="Clipboard history"
-            className="aspect-video w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+        ))}
       </div>
     </MockFrame>
   );
