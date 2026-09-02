@@ -11,6 +11,7 @@ const HERO_END = "/assets/images/bg/home/hero-end.jpeg";
 const HERO_VIDEO = "/assets/video/quattro-first-boot.mp4";
 const PLAY_FALLBACK_MS = 8000;
 const VIDEO_CUT_S = 2.85;
+const VIDEO_FADE_MS = 2000;
 const WORD_WIDTH = "w-[73.8%]";
 
 function prefersReducedMotion() {
@@ -32,7 +33,8 @@ export default function HomeHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const endedRef = useRef(false);
   const playingRef = useRef(false);
-  const [videoGone, setVideoGone] = useState(false);
+  const [videoFade, setVideoFade] = useState(false);
+  const [videoOff, setVideoOff] = useState(false);
   const [etch, setEtch] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showCopy, setShowCopy] = useState(false);
@@ -41,7 +43,8 @@ export default function HomeHero() {
   const skipToEnd = useCallback(() => {
     endedRef.current = true;
     playingRef.current = false;
-    setVideoGone(true);
+    setVideoFade(true);
+    setVideoOff(true);
     setEtch(true);
     setShowTitle(true);
     setShowCopy(true);
@@ -51,8 +54,9 @@ export default function HomeHero() {
   const finishVideo = useCallback(() => {
     if (endedRef.current) return;
     endedRef.current = true;
-    setVideoGone(true);
+    setVideoFade(true);
     window.setTimeout(() => setEtch(true), 420);
+    window.setTimeout(() => setVideoOff(true), VIDEO_FADE_MS + 80);
   }, []);
 
   useEffect(() => {
@@ -148,7 +152,13 @@ export default function HomeHero() {
           />
           <video
             ref={videoRef}
-            className={cn(frameClass, "[transform:translateZ(0)]", videoGone && "hidden")}
+            className={cn(
+              frameClass,
+              "[transform:translateZ(0)] transition-opacity ease-out",
+              videoFade ? "opacity-0" : "opacity-100",
+              videoOff && "hidden",
+            )}
+            style={{ transitionDuration: `${VIDEO_FADE_MS}ms` }}
             poster={HERO_START}
             width={1920}
             height={1056}
@@ -165,16 +175,19 @@ export default function HomeHero() {
             onEnded={finishVideo}
             onTimeUpdate={onTimeUpdate}
             onError={skipToEnd}
+            onTransitionEnd={(event) => {
+              if (event.propertyName === "opacity" && event.target === videoRef.current) {
+                setVideoOff(true);
+              }
+            }}
           >
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
 
           {etch ? (
-            <div className="pointer-events-none absolute inset-0 mix-blend-screen">
-              <div className="flex size-full items-center justify-center">
-                <div className={WORD_WIDTH}>
-                  <WteLogo active onFinished={onLogoFinished} />
-                </div>
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <div className={WORD_WIDTH}>
+                <WteLogo active onFinished={onLogoFinished} />
               </div>
             </div>
           ) : null}
