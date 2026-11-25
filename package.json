@@ -13,7 +13,8 @@
     "format": "vp fmt",
     "lint": "biome lint",
     "check": "vp check",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "deploy": "vp build && wrangler deploy"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
+    "@cloudflare/vite-plugin": "^1.70.1",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/router-cli": "^1.132.0",
@@ -60,7 +62,8 @@
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "^6.0.2",
     "vite": "catalog:",
-    "vite-plus": "catalog:"
+    "vite-plus": "catalog:",
+    "wrangler": "^4.167.0"
   },
   "devEngines": {
     "packageManager": {

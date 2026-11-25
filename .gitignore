@@ -13,3 +13,6 @@ __unconfig*
 todos.json
 .vercel
 .env*
+
+# Cloudflare Workers local secrets.
+.dev.vars*
